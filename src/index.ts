@@ -14,13 +14,21 @@ class Calendar {
   public eventsDB: object = {};
   public readonly eventsDBUrl: string = "http://localhost:3000/events";
 
+  public localeDb: object = window.localStorage;
+
   public currentCalendar: string = "Calendar";
 
   constructor() {
-    console.log('test')
     this.initCalendar();
     this.getDataBase(this.eventsDBUrl).then(this.loadData)
     this.addEventListeners();
+
+    this.testLocalStorage();
+  }
+
+  public testLocalStorage() {
+    localStorage.setItem('test', JSON.stringify(this.data))
+    console.log(this.localeDb)
   }
 
   public getData(): void {
@@ -169,6 +177,7 @@ class Calendar {
       this.eventsDB[inputDate] = [];
       // @ts-ignore
       this.eventsDB[inputDate].push(eventDesc)
+      localStorage.setItem(`event.${inputDate}`, eventDesc)
     } else {
       // @ts-ignore
       this.eventsDB[inputDate].push(eventDesc)
@@ -178,7 +187,6 @@ class Calendar {
     this.eventsDB[inputDate].forEach((item: string) => {
       dateEvents.push(`<div>${item}</div>`)
     })
-    console.log('pushed')
     Calendar.addEventToDate(inputDate, dateEvents);
   }
 
@@ -224,7 +232,6 @@ class AnotherCalendar extends Calendar {
   constructor() {
     super();
     this.getDataBase(this.localeDbUrl).then(() => {
-      console.log("Success");
       this.loadAnotherData();
     })
   }
