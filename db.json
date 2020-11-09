@@ -1,0 +1,34 @@
+{
+  "events": {
+    "2020-10-01": [
+      {
+        "id": 1,
+        "text": "Marriege"
+      },
+      {
+        "id": 2,
+        "text": "Marriege"
+      }
+    ],
+    "2020-10-02": [
+      {
+        "id": 1,
+        "text": "Marriege"
+      },
+      {
+        "id": 2,
+        "text": "Marriege"
+      }
+    ],
+    "2020-10-03": [
+      {
+        "id": 1,
+        "text": "Marriege"
+      },
+      {
+        "id": 2,
+        "text": "Marriege"
+      }
+    ]
+  }
+}
