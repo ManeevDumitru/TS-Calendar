@@ -1,13 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3ab3aae8-5a37-4145-93a3-d2de0a739e8a" name="Default Changelist" comment="" />
+    <list default="true" id="3ab3aae8-5a37-4145-93a3-d2de0a739e8a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/anotherCalendar.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/anotherCalendar.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/main.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1k45meO4YbL4bz4aYKu1NaHhzIB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -27,7 +39,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604947183937</updated>
-      <workItem from="1604947184969" duration="2777000" />
+      <workItem from="1604947184969" duration="13912000" />
     </task>
     <servers />
   </component>
@@ -35,9 +47,17 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="616" y="250" key="run.anything.popup" timestamp="1604949912525">
+    <state x="832" y="436" width="405" height="207" key="Github.ShareDialog" timestamp="1604950047745">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604949912525" />
+    <state x="832" y="436" width="405" height="207" key="Github.ShareDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604950047745" />
+    <state x="756" y="160" key="Github.UntrackedFilesDialog" timestamp="1604950056981">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="756" y="160" key="Github.UntrackedFilesDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604950056981" />
+    <state x="616" y="250" key="run.anything.popup" timestamp="1604960413594">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604960413594" />
   </component>
 </project>

@@ -63,7 +63,7 @@ body {
 
 .calendar-header {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 70% 30%;
 }
 .calendar-body {
     height: 100%;
@@ -143,8 +143,20 @@ body {
     width: 50%;
     height: 200px;
     background: #000;
+    display: grid;
+    grid-template-rows: 90% auto;
+}
+
+.btn-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .calendar-cell-events-container {
     z-index: 3;
+    color: #fff;
+}
+
+.holiday {
+    color: red !important;
 }

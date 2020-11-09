@@ -10,41 +10,54 @@ class Calendar {
   private readonly calendarBody: any = document.getElementById("calendar-body");
   private readonly headerRight: any = document.getElementById('header-right');
 
-  private data: any = [];
-  private eventsDB: object = {};
-  private readonly eventsDBUrl: string = "http://localhost:3000/events";
+  public data: object = {};
+  public eventsDB: object = {};
+  public readonly eventsDBUrl: string = "http://localhost:3000/events";
+
+  public currentCalendar: string = "Calendar";
 
   constructor() {
-    this.getData(this.eventsDBUrl);
-    this.loadData();
+    console.log('test')
     this.initCalendar();
+    this.getDataBase(this.eventsDBUrl).then(this.loadData)
     this.addEventListeners();
-    this.uploadDataToFile();
   }
 
-  private async loadData() {
-    await this.getData(this.eventsDBUrl)
-      .then(() => {
-        for (let key in this.eventsDB) {
-          let data: string[] = [];
-          this.eventsDB[key].forEach((event: string) => {
-            data.push(`<div>${event}</div>`)
-          })
-          Calendar.addEventToDate(key, data);
-        }
+  public getData(): void {
+    this.selectedDate = this.date;
+    this.selectedYear = this.selectedDate.getFullYear();
+    this.selectedMonth = this.selectedDate.getMonth();
+    this.firstDayOfSelectedMonth = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), 1);
+    this.lastDayOfSelectedMonth = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth() + 1, 0);
+  }
+  public async getDataBase(url: string): Promise<any> {
+    await fetch(url)
+      .then((response) => {
+        return response.json();
       })
+      .then((myJson) => {
+        this.data = myJson;
+        console.log(this.data)
+        return myJson
+      });
   }
-  private uploadDataToFile(): void {
-    console.log("Successfully uploaded");
+  public loadData(): void {
+    for (let key in this.data) {
+      let data: string[] = [];
+
+      // @ts-ignore
+      this.data[key].forEach((event: any) => {
+        data.push(`<div>${event.text}</div>`)
+      })
+      Calendar.addEventToDate(key, data);
+    }
   }
-  private initCalendar(): void {
+  public initCalendar(): void {
+    this.fillCalendarWeekCells();
+    this.buildCalendarBody();
+    this.loadData();
     const months: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     this.headerRight.innerHTML = `<div class="date-container" id="date-container">${months[this.selectedMonth]} ${this.selectedYear}</div>`;
-    this.buildCalendarBody();
-    this.fillCalendarWeekCells();
-  }
-  static addEventToDate(date: string, events: string[]): void {
-    document.getElementById(date)!.lastElementChild!.innerHTML = events.join(``);
   }
   private changeDate(action: string) {
     switch (action) {
@@ -61,24 +74,9 @@ class Calendar {
         break;
       }
     }
-    this.getData(this.eventsDBUrl);
+    this.getData();
     this.initCalendar();
-  }
-  private async getData(url: string): Promise<any> {
-    this.selectedDate = this.date;
-    this.selectedYear = this.selectedDate.getFullYear();
-    this.selectedMonth = this.selectedDate.getMonth();
-    this.firstDayOfSelectedMonth = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth(), 1);
-    this.lastDayOfSelectedMonth = new Date(this.selectedDate.getFullYear(), this.selectedDate.getMonth() + 1, 0);
-
-    await fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((myJson) => {
-        this.eventsDB = myJson;
-        return myJson;
-      });
+    this.loadData();
   }
   private buildCalendarBody(): void {
     let displayDates: string[] = [];
@@ -89,18 +87,18 @@ class Calendar {
 
     modifiedDate2.setDate(modifiedDate2.getDate() - modifiedDate.getDay());
     for (let i: number = 0; i < modifiedDate.getDay(); i++) {
-      displayDates.push(this.calendarCellTemplate(this.dateFormat(modifiedDate2)))
+      displayDates.push(this.calendarCellTemplate(Calendar.dateFormat(modifiedDate2)))
       modifiedDate2.setDate(modifiedDate2.getDate() + 1);
     }
     modifiedDate = this.firstDayOfSelectedMonth;
 
     for (let day: number = 0; day < this.lastDayOfSelectedMonth.getDate(); day++) {
-      displayDates.push(this.calendarCellTemplate(this.dateFormat(modifiedDate)))
+      displayDates.push(this.calendarCellTemplate(Calendar.dateFormat(modifiedDate)))
       modifiedDate.setDate(modifiedDate.getDate() + 1)
     }
 
     for (let daysLeft: number = 0; daysLeft < amountOfDaysLeft; daysLeft++) {
-      displayDates.push(this.calendarCellTemplate(this.dateFormat(modifiedDate)))
+      displayDates.push(this.calendarCellTemplate(Calendar.dateFormat(modifiedDate)))
       modifiedDate.setDate(modifiedDate.getDate() + 1)
     }
     this.calendarBody.innerHTML = displayDates.join("")
@@ -114,7 +112,7 @@ class Calendar {
     }
     return ""
   }
-  private dateFormat(date: Date): string { // Formats param date to yyyy-mm-dd
+  static dateFormat(date: Date): string { // Formats param date to yyyy-mm-dd
     let month = '' + (date.getMonth() + 1);
     let day = '' + date.getDate();
     let year = date.getFullYear();
@@ -129,18 +127,6 @@ class Calendar {
     }
     return [year, month, day].join('-');
   }
-  private calendarCellTemplate(date: string): string {
-    const currentDate: Date = new Date();
-    const modifiedDate: Date = new Date(date);
-    const isToday: string = this.dateFormat(currentDate) === this.dateFormat(modifiedDate) ? 'calendar-cell-today' : 'calendar-cell';
-    const isSunday: string = this.weekDays[modifiedDate.getDay()] === "Sunday" ? "#FF0000" : "#fff"; // -> Same as private function isSunday
-
-    return `
-      <div id="${date}" class="${isToday} ${this.isNotCurrentMonth(date)}" style="color: ${isSunday}">
-        <div class="calendar-cell-date">${modifiedDate.getDate()}</div>
-        <div class="calendar-cell-events-container"></div>
-      </div>`
-  }
   private fillCalendarWeekCells(): void {
     let days: string[] = [];
     const calendarWeekContainer: any = document.getElementById('calendar-weeks-container');
@@ -153,6 +139,20 @@ class Calendar {
   private calendarWeekCellTemplate(index: number): string {
     return `<div class="calendar-week-cell">${this.weekDays[index]}</div>`
   }
+  private calendarCellTemplate(date: string): string {
+    const currentDate: Date = new Date();
+    const modifiedDate: Date = new Date(date);
+    const isToday: string = Calendar.dateFormat(currentDate) === Calendar.dateFormat(modifiedDate) ? 'calendar-cell-today' : 'calendar-cell';
+    const isSunday: string = this.weekDays[modifiedDate.getDay()] === "Sunday" ? "#FF0000" : "#fff"; // -> Same as private function isSunday
+    const isHoliday: string = date in this.data ? "holiday" : "";
+
+    return `
+      <div id="${date}" class="${isToday} ${this.isNotCurrentMonth(date)} ${isHoliday}" style="color: ${isSunday}">
+      ${date}
+        <div class="calendar-cell-date">${modifiedDate.getDate()}</div>
+        <div class="calendar-cell-events-container"></div>
+      </div>`
+  }
   static closeEvent(): void {
     document.getElementById('eventDescBackground')!.style.display = "none";
   }
@@ -163,7 +163,6 @@ class Calendar {
     const inputDate: string = (<HTMLInputElement>document.getElementById("dateInput")).value;
     const eventDesc: string = (<HTMLInputElement>document.getElementById("eventDesc")).value;
     let dateEvents: string[] = [];
-
     // @ts-ignore
     if (!this.eventsDB[inputDate]) {
       // @ts-ignore
@@ -175,31 +174,86 @@ class Calendar {
       this.eventsDB[inputDate].push(eventDesc)
     }
 
+    // @ts-ignore
     this.eventsDB[inputDate].forEach((item: string) => {
       dateEvents.push(`<div>${item}</div>`)
     })
+    console.log('pushed')
     Calendar.addEventToDate(inputDate, dateEvents);
-    console.log(this.eventsDB)
+  }
+
+  public changeCalendar(): void {
+    this.data = {};
+    this.getData();
+    this.initCalendar()
+
+  }
+
+  static addEventToDate(date: string, events: string[]): void {
+    try {
+      document.getElementById(date)!.className += " holiday";
+      (<HTMLElement>(<HTMLElement>document.getElementById(date)).lastElementChild).innerHTML = events.join(``);
+    } catch (e) {
+      //
+    }
   }
   private addEventListeners(): void {
-    document.getElementById("removeMonthBtn").addEventListener("click", () => {
+    (<HTMLElement>document.getElementById("removeMonthBtn")).addEventListener("click", () => {
       this.changeDate("remove");
     });
-    document.getElementById("addMonthBtn").addEventListener("click", () => {
+    (<HTMLElement>document.getElementById("addMonthBtn")).addEventListener("click", () => {
       this.changeDate("add");
     });
-    document.getElementById("addDateBtn").addEventListener("click", () => {
+    (<HTMLElement>document.getElementById("addDateBtn")).addEventListener("click", () => {
       Calendar.openEvent();
-    })
-    document.getElementById("confirmEvent").addEventListener("click", () => {
+    });
+    (<HTMLElement>document.getElementById("confirmEvent")).addEventListener("click", () => {
       this.saveEvent();
-    })
-    document.getElementById("cancelEvent").addEventListener("click", () => {
+    });
+    (<HTMLElement>document.getElementById("cancelEvent")).addEventListener("click", () => {
       Calendar.closeEvent();
-    })
+    });
+    (<HTMLElement>document.getElementById("changeCalculatorBtn")).addEventListener("click", () => {
+      this.changeCalendar();
+    });
   }
 }
 
-let calendar = new Calendar();
+class AnotherCalendar extends Calendar {
+  private readonly localeDbUrl: string = "http://localhost:3001/events";
+  constructor() {
+    super();
+    this.getDataBase(this.localeDbUrl).then(() => {
+      console.log("Success");
+      this.loadAnotherData();
+    })
+  }
+  private loadAnotherData(): void {
+    for (let key in this.data) {
+      let data: string[] = [];
+      // @ts-ignore
+      this.data[key].forEach((event: any) => {
+        data.push(`<div>${event.text}</div>`)
+      })
+      Calendar.addEventToDate(key, data);
+    }
+  }
+  public changeCalendar(): void {
+    this.data = {};
+    this.getData();
+    this.initCalendar();
+    if (this.currentCalendar === "Calendar") {
+      this.getDataBase(this.eventsDBUrl).then(() => {
+        this.loadData();
+      })
+      this.currentCalendar = "anotherCalendar";
+    } else {
+      this.getDataBase(this.localeDbUrl).then(() => {
+        this.loadData();
+      })
+      this.currentCalendar = "Calendar";
+    }
+  }
+}
 
-
+let calendar = new AnotherCalendar();
