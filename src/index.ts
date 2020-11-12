@@ -156,7 +156,6 @@ class Calendar {
 
     return `
       <div id="${date}" class="${isToday} ${this.isNotCurrentMonth(date)} ${isHoliday}" style="color: ${isSunday}">
-      ${date}
         <div class="calendar-cell-date">${modifiedDate.getDate()}</div>
         <div class="calendar-cell-events-container"></div>
       </div>`
@@ -229,12 +228,6 @@ class Calendar {
 
 class AnotherCalendar extends Calendar {
   private readonly localeDbUrl: string = "http://localhost:3001/events";
-  constructor() {
-    super();
-    this.getDataBase(this.localeDbUrl).then(() => {
-      this.loadAnotherData();
-    })
-  }
   private loadAnotherData(): void {
     for (let key in this.data) {
       let data: string[] = [];
