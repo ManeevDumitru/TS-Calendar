@@ -1,7 +1,10 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: {
+    index: './src/index.ts',
+    another: './src/anotherCalendar.ts'
+  },
   module: {
     rules: [
       {
@@ -17,7 +20,7 @@ module.exports = {
   devtool: 'eval-source-map',
   output: {
     publicPath: 'public',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'public'),
   },
 };
