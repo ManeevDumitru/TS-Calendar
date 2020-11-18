@@ -12,42 +12,87 @@
     outline: 0;
 }
 body {
-    background: #0E1621;
+    background: #686c71;
     height: 100vh;
     width: 100%;
     color: #d4d4d4;
 }
-
 .calculator-container {
-    width: 360px;
+    padding: 7px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    background: #212121;
 }
-
-.calculator-container input {
-    width: 100%;
+.history-input,
+.output-input {
+    width: 315px;
+    border: 0;
+    text-align: right;
+    background: transparent;
 }
-
-.buttons-container {
-    display: grid;
-    grid-template-columns: 270px 90px;
+.history-input {
+    font-size: 22px;
+    color: #d0d0d0;
 }
-
-.numbers-container {
-    display: grid;
-    grid-template-columns: repeat(3, 90px);
-    grid-template-rows: repeat(4, 90px);
+.output-input {
+    height: 75px;
+    font-size: 48px;
+    color: #fff;
 }
-
+.top-operations-container,
+.numbers-container,
 .operations-container {
     display: grid;
-    grid-template-rows: repeat(4, 90px);
+    grid-gap: 5px;
 }
-
+.bottom-buttons-container {
+    display: grid;
+    grid-template-columns: 240px auto;
+}
+.top-operations-container {
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: 75px;
+    margin-bottom: 5px;
+}
+.numbers-container {
+    grid-template-columns: repeat(3, 75px);
+    grid-template-rows: repeat(4, 75px);
+}
+.operations-container {
+    grid-template-rows: repeat(4, 75px);
+}
+button:hover {
+    cursor: pointer;
+    background: #5A5B5D !important;
+}
+.top-operations-container button,
 .numbers-container button,
 .operations-container button {
     width: 100%;
     height: 100%;
+    border: 0;
+    font-size: 24px;
+    color: #fff;
+}
+.numbers-container button {
+    background: #060606;
+}
+.top-operations-container button,
+.operations-container button {
+    background: #161616;
+}
+
+.custom-one {
+    position: relative;
+}
+.custom-one:after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: -4px;
+    height: 1px;
+    width: 20px;
+    border-bottom: 2px solid #fff;
 }

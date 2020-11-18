@@ -1,15 +1,15 @@
 import { Calculator } from "./index"
 
 class CalculatorGeneration extends Calculator {
+  private readonly operationsTContainer: HTMLElement = document.getElementById("top-operations-container")!;
   private readonly numbersContainer: HTMLElement = document.getElementById("numbers-container")!;
   private readonly operationsContainer: HTMLElement = document.getElementById("operations-container")!;
-  private readonly buttons: string[] = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "0", ".", "="];
-  private readonly operations: string[] = ["+", "-", "*", "/"];
+  private readonly buttons: string[] = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "±", "0", "."];
+  private readonly operationsRight: string[] = ["X", "-", "+", "="];
   constructor() {
     super();
-    console.log("B")
     CalculatorGeneration.generateButtons(this.buttons, this.numbersContainer);
-    CalculatorGeneration.generateButtons(this.operations, this.operationsContainer);
+    CalculatorGeneration.generateButtons(this.operationsRight, this.operationsContainer);
     this.addEventListeners();
   }
 
@@ -23,15 +23,19 @@ class CalculatorGeneration extends Calculator {
 
   private addEventListeners(): void {
     document.getElementById('buttons-container')!.addEventListener("click", (e) => {
-      if (+(<HTMLInputElement>e.target).innerText >= 0) {
-        this.outputInput!.value += (<HTMLInputElement>e.target).innerText;
-      } else if ((<HTMLInputElement>e.target).innerText === ".") {
-        if (!(this.outputInput!.value).includes(".")) {
-          this.outputInput!.value += ".";
-        }
-      } else {
-        this.performCalculation();
-      }
+      // if ((<HTMLInputElement>e.target).innerText === "0") {
+      //   this.writeIn("0");
+      // } else if (+(<HTMLInputElement>e.target).innerText >= 1) {
+      //   this.writeIn((<HTMLInputElement>e.target).innerText);
+      // } else if ((<HTMLInputElement>e.target).innerText === ".") {
+      //   if (!(this.outputInput!.value).includes(".")) {
+      //     this.writeIn(".");
+      //   }
+      // } else {
+      //   this.performCalculation();
+      // }
+      // @ts-ignore
+      this.writeIn((<HTMLInputElement>e.target).innerText, this.outputInput)
     })
   }
 }
