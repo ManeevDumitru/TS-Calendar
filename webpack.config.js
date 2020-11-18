@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   entry: {
     index: './src/index.ts',
-    another: './src/anotherCalendar.ts'
+    another: './src/another.ts'
   },
   module: {
     rules: [
