@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3ab3aae8-5a37-4145-93a3-d2de0a739e8a" name="Default Changelist" comment="calculator branch">
+    <list default="true" id="3ab3aae8-5a37-4145-93a3-d2de0a739e8a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/anotherCalendar.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/another.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/another.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/another.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="calculator" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,6 +65,9 @@
       <workItem from="1604947184969" duration="15032000" />
       <workItem from="1604989982563" duration="4011000" />
       <workItem from="1605167869822" duration="9429000" />
+      <workItem from="1605722425171" duration="118000" />
+      <workItem from="1605860999957" duration="8954000" />
+      <workItem from="1605881764800" duration="291000" />
     </task>
     <task id="LOCAL-00001" summary="wh">
       <created>1604961258949</created>
@@ -79,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605186445988</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="calculator branch">
+      <created>1605722440083</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605722440083</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,10 +113,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="488" y="56" key="#TypeScript/0.0.1536.864@0.0.1536.864" timestamp="1605169850539" />
-    <state x="466" y="0" key="CommitChangelistDialog2" timestamp="1605188382439">
+    <state x="466" y="0" key="CommitChangelistDialog2" timestamp="1605722439242">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="466" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1605188382439" />
+    <state x="466" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1605722439242" />
     <state x="582" y="20" key="CommitChangelistDialog2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604961258301" />
     <state x="832" y="436" width="405" height="207" key="Github.ShareDialog" timestamp="1604950047745">
       <screen x="0" y="0" width="1920" height="1080" />
@@ -108,10 +126,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="756" y="160" key="Github.UntrackedFilesDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604950056981" />
-    <state x="441" y="215" key="Vcs.Push.Dialog.v2" timestamp="1605186450017">
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2" timestamp="1605722449509">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1605186450017" />
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1605722449509" />
     <state x="551" y="269" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604961261254" />
     <state x="93" y="93" width="1350" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605170670057">
       <screen x="0" y="0" width="1536" height="864" />
@@ -126,9 +144,10 @@
     </state>
     <state x="493" y="200" key="run.anything.popup/0.0.1536.864@0.0.1536.864" timestamp="1604991064730" />
     <state x="616" y="250" key="run.anything.popup/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604960413594" />
-    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1605170401857">
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup" timestamp="1605881952620">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
+    <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1605881952620" />
     <state x="431" y="181" width="672" height="678" key="search.everywhere.popup/0.0.1536.864@0.0.1536.864" timestamp="1605170401857" />
   </component>
 </project>

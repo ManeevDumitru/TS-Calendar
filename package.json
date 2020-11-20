@@ -28,6 +28,8 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "apexcharts": "^3.22.2",
+    "chart.js": "^2.9.4",
     "eslint-import-resolver-typescript": "^2.3.0"
   }
 }
