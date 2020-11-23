@@ -25,9 +25,16 @@ body {
     transform: translate(-50%, -50%);
     background: #212121;
 }
+.results-container {
+    max-width: 305px;
+}
+.history-container,
+.output-container {
+    max-width: 100%;
+}
 .history-input,
 .output-input {
-    width: 315px;
+    width: 100%;
     border: 0;
     text-align: right;
     background: transparent;
@@ -41,32 +48,37 @@ body {
     font-size: 48px;
     color: #fff;
 }
+.manipulations-buttons-container,
 .top-operations-container,
 .numbers-container,
 .operations-container {
     display: grid;
-    grid-gap: 5px;
+    grid-gap: 2px;
+    font-weight: 100 !important;
 }
 .bottom-buttons-container {
     display: grid;
-    grid-template-columns: 240px auto;
+    grid-template-columns: 231px auto;
 }
-.top-operations-container {
+.top-operations-container,
+.manipulations-buttons-container {
     grid-template-columns: repeat(4, 75px);
-    grid-template-rows: 75px;
-    margin-bottom: 5px;
+    grid-template-rows: 50px;
+    margin-bottom: 2px;
 }
 .numbers-container {
     grid-template-columns: repeat(3, 75px);
-    grid-template-rows: repeat(4, 75px);
+    grid-template-rows: repeat(4, 50px);
 }
 .operations-container {
-    grid-template-rows: repeat(4, 75px);
+    grid-template-columns: 75px;
+    grid-template-rows: repeat(4, 50px);
 }
 button:hover {
     cursor: pointer;
     background: #5A5B5D !important;
 }
+.manipulations-buttons-container button,
 .top-operations-container button,
 .numbers-container button,
 .operations-container button {
@@ -79,11 +91,19 @@ button:hover {
 .numbers-container button {
     background: #060606;
 }
+.manipulations-buttons-container button,
 .top-operations-container button,
 .operations-container button {
     background: #161616;
+    font-size: 16px;
+    font-style: italic;
 }
-
+.operations-container div:last-child button {
+    background: #2A3B44;
+}
+.operations-container div:last-child button:hover {
+    background: #1F435D !important;
+}
 .custom-one {
     position: relative;
 }

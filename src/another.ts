@@ -5,7 +5,7 @@ class CalculatorGeneration extends Calculator {
   private readonly numbersContainer: HTMLElement = document.getElementById("numbers-container")!;
   private readonly operationsContainer: HTMLElement = document.getElementById("operations-container")!;
   private readonly buttons: string[] = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "±", "0", "."];
-  private readonly operationsRight: string[] = ["X", "-", "+", "="];
+  private readonly operationsRight: string[] = ["*", "-", "+", "="];
   constructor() {
     super();
     CalculatorGeneration.generateButtons(this.buttons, this.numbersContainer);
@@ -36,6 +36,9 @@ class CalculatorGeneration extends Calculator {
       // }
       // @ts-ignore
       this.writeIn((<HTMLInputElement>e.target).innerText, this.outputInput)
+    });
+    document.getElementById('c-btn')!.addEventListener('click', () => {
+      calculator.clearCalculator();
     })
   }
 }
