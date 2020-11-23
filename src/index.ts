@@ -2,6 +2,8 @@
 //1. Interface
 //2. Incapsulation
 //3. Back
+import {log} from "util";
+
 export class Calculator {
   // @ts-ignore
   protected outputInput: HTMLInputElement | null = document.getElementById('output-input');
@@ -142,44 +144,83 @@ export class Calculator {
   //   this.operator = value;
   // }
   protected setOperation(value: string): void {
+    const complexOperators: string[] = ["1/x", "x²", "√x", "%"];
     this.operator = value;
+    console.log(`Prev is 1/x ${this.prevOperator === value}`)
     if(!this.edited) {
-      this.history.push(`${this.currentValue} ${value} `.replace("x",""));
-      this.edited = true;
+      if (!(complexOperators.includes(value))) {
+        if (complexOperators.includes(this.prevOperator)) {
+          console.log(`Prev op was complex ${this.prevOperator}`)
+          this.history.push(`${value} `);
+        } else {
+          this.history.push(`${this.currentValue} ${value} `);
+        }
+        this.edited = true;
+      } else {
+        this.setComplexOperation(value);
+        return
+      }
     } else {
       this.history[this.history.length - 1] = `${this.currentValue} ${value} `.replace("x","");
     }
     this.historyInput!.value = this.history.join("");
     if (value === "=") {
-      let temp = this.history.join("");
-      console.log(temp = temp.substring(0, temp.length - 2)
-        .replace("X", "*")
-        .replace("√","Math.sqrt"));
-      console.log(eval(temp));
-      this.outputInput!.value = eval(temp).toString();
+      this.performCalculation();
       this.reset = true;
     }
-    console.log(this.history)
+    console.log(this.history);
     this.prevOperator = value;
   }
+
+  protected setComplexOperation(value: string): void {
+    switch (value) {
+      case "1/x":
+        console.log("Is x²")
+        if (!this.hiddenOutput) {
+          this.hiddenOutput = `1/(${this.currentValue}) `;
+          this.history.push(`${this.hiddenOutput} `);
+        } else {
+          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
+          this.hiddenOutput = `1/(${this.hiddenOutput}) `;
+        }
+        break;
+      case "x²":
+        console.log("Is x²")
+        if (!this.hiddenOutput) {
+          this.hiddenOutput = `${this.currentValue} ** 2 `;
+          this.history.push(`${this.hiddenOutput} `);
+        } else {
+          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
+          this.hiddenOutput = `${this.hiddenOutput} ** 2 `;
+        }
+        break;
+    }
+    this.performCalculation();
+    this.prevOperator = value;
+    this.historyInput!.value = this.history.join("");
+    console.log(this.history);
+  }
+
+  private performCalculation(): void {
+    let temp = this.history.join("");
+    temp = temp.substring(0, temp.length - 2);
+    console.log(temp);
+    this.outputInput!.value = eval(temp).toString();
+  }
+
   private resetParams(): void {
     this.history = [];
     this.edited = false;
     this.currentValue = "0";
     this.operator = "";
-    this.prevOperator = "";
     this.hiddenOutput = "";
+    this.prevOperator = "";
     this.historyInput!.value = "";
   }
   public clearCalculator(): void {
+    this.history = [];
     this.currentValue = "0";
     this.outputInput!.value = "0";
     this.historyInput!.value = "";
-  }
-  private performCalculation(value: string): void {
-    console.log(eval(value));
-    this.outputInput!.value = eval(value);
-    this.currentValue = '0';
-    this.operator = '';
   }
 }
