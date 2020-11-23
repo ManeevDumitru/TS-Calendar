@@ -52,105 +52,15 @@ export class Calculator {
       this.setOperation(value);
     }
   }
-  protected addToHistory(value: string, type: string): void {
-    if (type === 'add') {
-      this.historyInput!.value += value;
-    } else if (type === 'equal') {
-      this.historyInput!.value = value;
-    }
-  }
-  // protected setOperation(value: string): void {
-  //   switch (value) {
-  //     case `1/X`:
-  //       if (!this.hiddenOutput) { // if hidden is empty
-  //         this.hiddenOutput = `1/(${this.currentValue})`; // curr val
-  //         this.addToHistory(this.hiddenOutput, 'equal');
-  //       } else {
-  //         if (!(this.prevOperator === `1/X`)) { // if before was the same op
-  //           this.hiddenOutput = `1/(${this.hiddenOutput})`; // hidden val
-  //           this.addToHistory(this.hiddenOutput, 'add');
-  //         } else {
-  //           console.log(this.hiddenOutput)
-  //           this.hiddenOutput = `1/(${this.hiddenOutput})`; // hidden val
-  //           this.addToHistory(this.hiddenOutput, 'equal');
-  //         }
-  //       }
-  //       this.performCalculation(this.hiddenOutput);
-  //
-  //       break;
-  //     case `X²`:
-  //       console.log(`WIP`)
-  //       // if (!this.hiddenOutput) {
-  //       //   this.hiddenOutput = `sqr(${this.currentValue})`;
-  //       //   this.addToHistory(this.hiddenOutput, 'equal');
-  //       // } else {
-  //       //   if (!(this.prevOperator === `X²`)) {
-  //       //     this.hiddenOutput = `sqr(${this.hiddenOutput})`
-  //       //     this.addToHistory(this.hiddenOutput, 'equal');
-  //       //   } else {
-  //       //     this.hiddenOutput = `sqr(${this.hiddenOutput})`
-  //       //     this.addToHistory(this.hiddenOutput, 'equal');
-  //       //   }
-  //       // }
-  //       // this.prevOperator = value;
-  //       break;
-  //     case `√x`:
-  //       if (!this.hiddenOutput) {
-  //         this.hiddenOutput = `√(${this.currentValue})`;
-  //         this.addToHistory(this.hiddenOutput, 'equal');
-  //       } else {
-  //         if (!(this.prevOperator === `√x`)) {
-  //           this.hiddenOutput = `√(${this.hiddenOutput})`
-  //           this.addToHistory(this.hiddenOutput, 'add');
-  //         } else {
-  //           this.hiddenOutput = `√(${this.hiddenOutput})`
-  //           this.addToHistory(this.hiddenOutput, 'equal');
-  //         }
-  //       }
-  //       this.prevOperator = value;
-  //       break;
-  //     case `=`:
-  //       let tempString: string = this.historyInput!.value;
-  //       if (!(this.prevOperator === "=")) {
-  //         console.log(tempString);
-  //         tempString = tempString.replace('√', 'Math.sqrt');
-  //         console.log(eval(tempString));
-  //         this.addToHistory(`${tempString} = `, 'equal')
-  //       }
-  //       this.prevOperator = value;
-  //       break;
-  //     case `+`:
-  //       this.hiddenOutput = this.currentValue;
-  //       this.addToHistory(`${this.hiddenOutput}`, 'equal');
-  //       this.addToHistory(` ${value} `, 'add');
-  //       this.resetParams();
-  //       console.log(this.hiddenOutput);
-  //       break;
-  //     case `R`:
-  //       this.currentValue = this.currentValue.substring(0, this.currentValue.length - 1);
-  //       if (+this.currentValue <= 0) {
-  //         this.currentValue = "0"
-  //       }
-  //       this.outputInput!.value = this.currentValue;
-  //       console.log(this.currentValue);
-  //       break;
-  //     case `C`:
-  //       this.currentValue = "0";
-  //       this.outputInput!.value = this.currentValue;
-  //       console.log(this.currentValue);
-  //       break;
-  //   }
-  //   this.prevOperator = value;
-  //   this.operator = value;
-  // }
-  protected setOperation(value: string): void {
+  private setOperation(value: string): void {
     const complexOperators: string[] = ["1/x", "x²", "√x", "%"];
     this.operator = value;
     console.log(`Prev is 1/x ${this.prevOperator === value}`)
     if(!this.edited) {
       if (!(complexOperators.includes(value))) {
         if (complexOperators.includes(this.prevOperator)) {
-          console.log(`Prev op was complex ${this.prevOperator}`)
+          console.log(`Prev op was complex ${this.prevOperator}`);
+          this.currentValue = "";
           this.history.push(`${value} `);
         } else {
           this.hiddenOutput = "";
@@ -172,8 +82,7 @@ export class Calculator {
     console.log(this.history);
     this.prevOperator = value;
   }
-
-  protected setComplexOperation(value: string): void {
+  private setComplexOperation(value: string): void {
     switch (value) {
       case "1/x":
         console.log("Is x²")
@@ -215,7 +124,6 @@ export class Calculator {
     this.historyInput!.value = this.history.join("").split("**").join("^").split("√").join("Math.sqrt");
     console.log(this.history);
   }
-
   private performCalculation(): void {
     let temp = this.history.join("");
     temp = temp.substring(0, temp.length - 2).split("√").join("Math.sqrt");
@@ -225,7 +133,6 @@ export class Calculator {
       this.outputInput!.value = eval(temp).toString();
     }
   }
-
   private resetParams(): void {
     this.history = [];
     this.edited = false;

@@ -23,17 +23,6 @@ class CalculatorGeneration extends Calculator {
 
   private addEventListeners(): void {
     document.getElementById('buttons-container')!.addEventListener("click", (e) => {
-      // if ((<HTMLInputElement>e.target).innerText === "0") {
-      //   this.writeIn("0");
-      // } else if (+(<HTMLInputElement>e.target).innerText >= 1) {
-      //   this.writeIn((<HTMLInputElement>e.target).innerText);
-      // } else if ((<HTMLInputElement>e.target).innerText === ".") {
-      //   if (!(this.outputInput!.value).includes(".")) {
-      //     this.writeIn(".");
-      //   }
-      // } else {
-      //   this.performCalculation();
-      // }
       // @ts-ignore
       this.writeIn((<HTMLInputElement>e.target).innerText, this.outputInput)
     });
