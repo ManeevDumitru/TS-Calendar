@@ -38,7 +38,13 @@ class CalculatorGeneration extends Calculator {
       this.writeIn((<HTMLInputElement>e.target).innerText, this.outputInput)
     });
     document.getElementById('c-btn')!.addEventListener('click', () => {
-      calculator.clearCalculator();
+      this.clearCalculator();
+    });
+    document.getElementById('ce-btn')!.addEventListener('click', () => {
+      this.clearCurrent();
+    });
+    document.getElementById('r-btn')!.addEventListener('click', () => {
+      this.removeOneDigit();
     })
   }
 }

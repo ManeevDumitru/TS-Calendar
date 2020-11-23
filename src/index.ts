@@ -153,6 +153,7 @@ export class Calculator {
           console.log(`Prev op was complex ${this.prevOperator}`)
           this.history.push(`${value} `);
         } else {
+          this.hiddenOutput = "";
           this.history.push(`${this.currentValue} ${value} `);
         }
         this.edited = true;
@@ -163,7 +164,7 @@ export class Calculator {
     } else {
       this.history[this.history.length - 1] = `${this.currentValue} ${value} `.replace("x","");
     }
-    this.historyInput!.value = this.history.join("");
+    this.historyInput!.value = this.history.join("").split("**").join("^");
     if (value === "=") {
       this.performCalculation();
       this.reset = true;
@@ -176,6 +177,10 @@ export class Calculator {
     switch (value) {
       case "1/x":
         console.log("Is x²")
+        if (this.currentValue === "0") {
+          console.log('Error');
+          return
+        }
         if (!this.hiddenOutput) {
           this.hiddenOutput = `1/(${this.currentValue}) `;
           this.history.push(`${this.hiddenOutput} `);
@@ -187,25 +192,38 @@ export class Calculator {
       case "x²":
         console.log("Is x²")
         if (!this.hiddenOutput) {
-          this.hiddenOutput = `${this.currentValue} ** 2 `;
+          this.hiddenOutput = `(${this.currentValue} ** 2) `;
           this.history.push(`${this.hiddenOutput} `);
         } else {
           this.history[this.history.length - 1] = `${this.hiddenOutput} `;
-          this.hiddenOutput = `${this.hiddenOutput} ** 2 `;
+          this.hiddenOutput = `(${this.hiddenOutput} ** 2) `;
+        }
+        break;
+      case "√x":
+        console.log("Is √x")
+        if (!this.hiddenOutput) {
+          this.hiddenOutput = `√(${this.currentValue}) `;
+          this.history.push(`${this.hiddenOutput} `);
+        } else {
+          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
+          this.hiddenOutput = `√(${this.hiddenOutput}) `;
         }
         break;
     }
     this.performCalculation();
     this.prevOperator = value;
-    this.historyInput!.value = this.history.join("");
+    this.historyInput!.value = this.history.join("").split("**").join("^").split("√").join("Math.sqrt");
     console.log(this.history);
   }
 
   private performCalculation(): void {
     let temp = this.history.join("");
-    temp = temp.substring(0, temp.length - 2);
-    console.log(temp);
-    this.outputInput!.value = eval(temp).toString();
+    temp = temp.substring(0, temp.length - 2).split("√").join("Math.sqrt");
+    if (!(eval(temp) % 2 === 0)) {
+      this.outputInput!.value = eval(temp).toFixed(2).toString();
+    } else {
+      this.outputInput!.value = eval(temp).toString();
+    }
   }
 
   private resetParams(): void {
@@ -217,10 +235,21 @@ export class Calculator {
     this.prevOperator = "";
     this.historyInput!.value = "";
   }
-  public clearCalculator(): void {
+  protected clearCalculator(): void {
     this.history = [];
     this.currentValue = "0";
     this.outputInput!.value = "0";
     this.historyInput!.value = "";
+  }
+  protected clearCurrent(): void {
+    this.currentValue = "0";
+    this.outputInput!.value = "0";
+  }
+  protected removeOneDigit(): void {
+    this.currentValue = this.currentValue.substring(0, this.currentValue.length - 1);
+    if (+this.currentValue <= 0) {
+      this.currentValue = "0"
+    }
+    this.outputInput!.value = this.currentValue;
   }
 }
