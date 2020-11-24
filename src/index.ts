@@ -87,6 +87,9 @@ const localeData = [
 const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 const customLabels: any = [];
 const customData: any = [];
+const randomisedData: any = [];
+const randomisedLabels: any = [];
+const randomisedLocalData: any = [];
 
 const getData = () => {
   localeData.forEach((item) => {
@@ -96,9 +99,20 @@ const getData = () => {
 }
 
 const getDataRandom = () => {
-  const today = new Date().setHours(0);
-
-  console.log(new Date(today))
+  let today = new Date();
+  let temp: any;
+  for (let i = 0; i < 31; i++) {
+    today = new Date(today.setDate(today.getDate() - 1));
+    randomisedData.push({
+      date:`${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`,
+      total_orders: Math.floor(Math.random() * 100) + 1
+    })
+  }
+  randomisedData.forEach((item: any) => {
+    randomisedLocalData.unshift(item.total_orders);
+    randomisedLabels.unshift(formatDate(item.date))
+  });
+  console.log(randomisedData)
 }
 
 const formatDate = (date: string) => {
@@ -111,12 +125,15 @@ getDataRandom();
 const options = {
   series: [{
     name: "Desktops",
-    data: customData
+    data: randomisedLocalData
   }],
   chart: {
     height: 350,
     type: 'line',
     zoom: {
+      enabled: false
+    },
+    animations: {
       enabled: false
     }
   },
@@ -137,7 +154,7 @@ const options = {
     },
   },
   xaxis: {
-    categories: customLabels,
+    categories: randomisedLabels,
   }
 };
 

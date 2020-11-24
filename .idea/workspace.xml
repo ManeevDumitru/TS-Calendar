@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ab3aae8-5a37-4145-93a3-d2de0a739e8a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/another.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/another.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +63,7 @@
       <workItem from="1605167869822" duration="9429000" />
       <workItem from="1605722425171" duration="118000" />
       <workItem from="1605860999957" duration="8954000" />
-      <workItem from="1605881764800" duration="291000" />
+      <workItem from="1605881764800" duration="3535000" />
     </task>
     <task id="LOCAL-00001" summary="wh">
       <created>1604961258949</created>
@@ -97,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605722440083</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="calculator branch">
+      <created>1605882089763</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605882089763</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,11 +116,16 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="488" y="56" key="#TypeScript/0.0.1536.864@0.0.1536.864" timestamp="1605169850539" />
-    <state x="466" y="0" key="CommitChangelistDialog2" timestamp="1605722439242">
+    <state x="466" y="0" key="CommitChangelistDialog2" timestamp="1605882089264">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
+    <state x="466" y="0" key="CommitChangelistDialog2/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1605882089264" />
     <state x="466" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1605722439242" />
     <state x="582" y="20" key="CommitChangelistDialog2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604961258301" />
+    <state x="-1696" y="311" width="1350" height="678" key="DiffContextDialog" timestamp="1606203626921">
+      <screen x="-1920" y="8" width="1920" height="1080" />
+    </state>
+    <state x="-1696" y="311" width="1350" height="678" key="DiffContextDialog/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1606203626921" />
     <state x="832" y="436" width="405" height="207" key="Github.ShareDialog" timestamp="1604950047745">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -126,15 +134,20 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="756" y="160" key="Github.UntrackedFilesDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604950056981" />
-    <state x="441" y="215" key="Vcs.Push.Dialog.v2" timestamp="1605722449509">
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2" timestamp="1605882091097">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1605882091097" />
     <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1605722449509" />
     <state x="551" y="269" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604961261254" />
     <state x="93" y="93" width="1350" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605170670057">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="93" y="93" width="1350" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1536.864@0.0.1536.864" timestamp="1605170670057" />
+    <state x="-1278" y="295" width="1531" height="846" key="dock-window-1" timestamp="1605882942311">
+      <screen x="-1920" y="8" width="1920" height="1080" />
+    </state>
+    <state x="-1278" y="295" width="1531" height="846" key="dock-window-1/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1605882942311" />
     <state x="479" y="149" width="577" height="566" key="find.popup" timestamp="1605169856445">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
