@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="../styles/main.css">
+  <link rel="shortcut icon" type="image/x-icon" href="https://pngimg.com/uploads/calculator/calculator_PNG7939.png" />
+</head>
+<body>
+<div id="calculator-container" class="calculator-container">
+  <div class="results-container">
+    <div class="history-container">
+      <input type="text" id="history-input" class="history-input" readonly value="">
+    </div>
+    <div class="output-container" id="output-container">
+      <input type="text" id="output-input" class="output-input" readonly>
+    </div>
+  </div>
+  <div class="manipulations-buttons-container">
+    <div>
+      <button id="%-btn">%</button>
+    </div>
+    <div>
+      <button id="ce-btn">CE</button>
+    </div>
+    <div>
+      <button id="c-btn">C</button>
+    </div>
+    <div>
+      <button id="r-btn">R</button>
+    </div>
+  </div>
+  <div class="buttons-container" id="buttons-container">
+    <div class="top-operations-container" id="top-operations-container">
+      <div>
+        <button><span>1</span>/x</button>
+      </div>
+      <div>
+        <button>x²</button>
+      </div>
+      <div>
+        <button>√x</button>
+      </div>
+      <div>
+        <button>÷</button>
+      </div>
+    </div>
+    <div class="bottom-buttons-container">
+      <div class="numbers-container" id="numbers-container"></div>
+      <div class="operations-container" id="operations-container"></div>
+    </div>
+  </div>
+</div>
+<script src="./another.bundle.js"></script>
+<script src="./index.bundle.js"></script>
+</body>
+</html>
