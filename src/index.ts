@@ -51,13 +51,17 @@ export class Calculator {
     } else {
       this.setOperation(value);
     }
+    console.log(this.history);
   }
   private setOperation(value: string): void {
     const complexOperators: string[] = ["1/x", "x²", "√x", "%"];
     this.operator = value;
     console.log(`Prev is 1/x ${this.prevOperator === value}`)
     if(!this.edited) {
-      if (!(complexOperators.includes(value))) {
+      if ((complexOperators.includes(value))) {
+        this.setComplexOperation(value);
+        return
+      } else {
         if (complexOperators.includes(this.prevOperator)) {
           console.log(`Prev op was complex ${this.prevOperator}`);
           this.currentValue = "";
@@ -67,45 +71,53 @@ export class Calculator {
           this.history.push(`${this.currentValue} ${value} `);
         }
         this.edited = true;
-      } else {
-        this.setComplexOperation(value);
-        return
       }
     } else {
       this.history[this.history.length - 1] = `${this.currentValue} ${value} `.replace("x","");
     }
     this.historyInput!.value = this.history.join("").split("**").join("^");
     if (value === "=") {
-      this.performCalculation();
+      try {
+        this.performCalculation();
+      }
+      catch (e) {
+        console.log(e);
+        if (this.reset) {
+          this.resetParams();
+          this.reset = false;
+        }
+        this.outputInput!.value = `Oops`;
+      }
       this.reset = true;
     }
-    console.log(this.history);
     this.prevOperator = value;
   }
-  private setComplexOperation(value: string): void {
+  protected setComplexOperation(value: string): void {
+    if (this.currentValue === "0") {
+      console.log('Error');
+      return
+    }
+    if (value !== this.prevOperator) {
+      this.hiddenOutput = ``;
+    }
     switch (value) {
       case "1/x":
         console.log("Is x²")
-        if (this.currentValue === "0") {
-          console.log('Error');
-          return
-        }
         if (!this.hiddenOutput) {
           this.hiddenOutput = `1/(${this.currentValue}) `;
           this.history.push(`${this.hiddenOutput} `);
         } else {
-          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
           this.hiddenOutput = `1/(${this.hiddenOutput}) `;
+          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
         }
         break;
       case "x²":
-        console.log("Is x²")
         if (!this.hiddenOutput) {
           this.hiddenOutput = `(${this.currentValue} ** 2) `;
           this.history.push(`${this.hiddenOutput} `);
         } else {
-          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
           this.hiddenOutput = `(${this.hiddenOutput} ** 2) `;
+          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
         }
         break;
       case "√x":
@@ -114,24 +126,36 @@ export class Calculator {
           this.hiddenOutput = `√(${this.currentValue}) `;
           this.history.push(`${this.hiddenOutput} `);
         } else {
-          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
           this.hiddenOutput = `√(${this.hiddenOutput}) `;
+          this.history[this.history.length - 1] = `${this.hiddenOutput} `;
         }
         break;
+      case "%":
+        if (!(this.prevOperator === value)) {
+          let temp = this.history.join("");
+          temp = temp.substring(0, temp.length - 2);
+          /*
+            temp ... 100%
+            r ... 30%
+          */
+          this.currentValue = ((eval(temp) * +this.currentValue)/ 100).toString();
+          this.historyInput!.value += `${this.currentValue} `;
+          this.outputInput!.value = this.currentValue;
+          return;
+        }
+        return;
     }
     this.performCalculation();
+    console.log(this.hiddenOutput);
+    this.outputInput!.value = eval(this.hiddenOutput.split("√").join("Math.sqrt"));
     this.prevOperator = value;
-    this.historyInput!.value = this.history.join("").split("**").join("^").split("√").join("Math.sqrt");
-    console.log(this.history);
+    this.historyInput!.value = this.history.join("").split("**").join("^");
   }
   private performCalculation(): void {
     let temp = this.history.join("");
+    console.log(`This is temp - ` + temp)
     temp = temp.substring(0, temp.length - 2).split("√").join("Math.sqrt");
-    if (!(eval(temp) % 2 === 0)) {
-      this.outputInput!.value = eval(temp).toFixed(2).toString();
-    } else {
-      this.outputInput!.value = eval(temp).toString();
-    }
+    this.outputInput!.value = eval(temp).toString();
   }
   private resetParams(): void {
     this.history = [];

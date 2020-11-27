@@ -34,7 +34,10 @@ class CalculatorGeneration extends Calculator {
     });
     document.getElementById('r-btn')!.addEventListener('click', () => {
       this.removeOneDigit();
-    })
+    });
+    document.getElementById('%-btn')!.addEventListener('click', () => {
+      this.setComplexOperation(`%`);
+    });
   }
 }
 
