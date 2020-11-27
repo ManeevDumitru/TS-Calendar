@@ -54,7 +54,7 @@ export class Calculator {
     console.log(this.history);
   }
   private setOperation(value: string): void {
-    const complexOperators: string[] = ["1/x", "x²", "√x", "%"];
+    const complexOperators: string[] = ["1/x", "x²", "√x", "%", "±"];
     this.operator = value;
     console.log(`Prev is 1/x ${this.prevOperator === value}`)
     if(!this.edited) {
@@ -144,16 +144,19 @@ export class Calculator {
           return;
         }
         return;
+      case "±":
+        this.currentValue = (+this.currentValue * (-1)).toString();
+        this.outputInput!.value = this.currentValue;
+        return;
     }
     this.performCalculation();
-    console.log(this.hiddenOutput);
-    this.outputInput!.value = eval(this.hiddenOutput.split("√").join("Math.sqrt"));
+    this.currentValue = eval(this.hiddenOutput.split("√").join("Math.sqrt"));
+    this.outputInput!.value = this.currentValue;
     this.prevOperator = value;
     this.historyInput!.value = this.history.join("").split("**").join("^");
   }
   private performCalculation(): void {
     let temp = this.history.join("");
-    console.log(`This is temp - ` + temp)
     temp = temp.substring(0, temp.length - 2).split("√").join("Math.sqrt");
     this.outputInput!.value = eval(temp).toString();
   }
