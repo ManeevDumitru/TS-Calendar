@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3ab3aae8-5a37-4145-93a3-d2de0a739e8a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/another.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/another.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +12,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="graph" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,10 +53,9 @@
       <workItem from="1604947184969" duration="15032000" />
       <workItem from="1604989982563" duration="4011000" />
       <workItem from="1605167869822" duration="9429000" />
-      <workItem from="1605736355819" duration="744000" />
-      <workItem from="1606118884423" duration="1544000" />
-      <workItem from="1606120463475" duration="8205000" />
-      <workItem from="1606128895271" duration="14666000" />
+      <workItem from="1605722425171" duration="118000" />
+      <workItem from="1605860999957" duration="8954000" />
+      <workItem from="1605881764800" duration="3535000" />
     </task>
     <task id="LOCAL-00001" summary="wh">
       <created>1604961258949</created>
@@ -109,7 +106,7 @@
       <option name="project" value="LOCAL" />
       <updated>1606149245328</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,7 +115,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="wh" />
     <MESSAGE value="calculator branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="calculator branch" />
+    <MESSAGE value="graph branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="graph branch" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2612" y="162" key="#JavaScript" timestamp="1605736478599">
@@ -129,11 +127,15 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="488" y="56" key="#TypeScript/0.0.1536.864@0.0.1536.864" timestamp="1605169850539" />
-    <state x="582" y="20" key="CommitChangelistDialog2" timestamp="1606149241972">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state x="466" y="0" key="CommitChangelistDialog2" timestamp="1605882089264">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
+    <state x="466" y="0" key="CommitChangelistDialog2/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1605882089264" />
     <state x="466" y="0" key="CommitChangelistDialog2/0.0.1536.864@0.0.1536.864" timestamp="1605188382439" />
     <state x="582" y="20" key="CommitChangelistDialog2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1606149241972" />
+    <state x="-1696" y="311" width="1350" height="678" key="DiffContextDialog" timestamp="1606203626921">
+      <screen x="-1920" y="8" width="1920" height="1080" />
+    </state>
     <state x="832" y="436" width="405" height="207" key="Github.ShareDialog" timestamp="1604950047745">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -142,15 +144,28 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="756" y="160" key="Github.UntrackedFilesDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604950056981" />
-    <state x="744" y="159" key="RollbackChangesDialog" timestamp="1605723624483">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1515" height="217" key="GridCell.Tab.0.bottom" timestamp="1606226651741">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="744" y="159" key="RollbackChangesDialog/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1605723624483" />
-    <state x="551" y="269" key="Vcs.Push.Dialog.v2" timestamp="1606149249746">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1515" height="217" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1606226651741" />
+    <state width="1515" height="217" key="GridCell.Tab.0.center" timestamp="1606226651741">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1605186450017" />
-    <state x="551" y="269" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1606149249746" />
+    <state width="1515" height="217" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1606226651741" />
+    <state width="1515" height="217" key="GridCell.Tab.0.left" timestamp="1606226651741">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1515" height="217" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1606226651741" />
+    <state width="1515" height="217" key="GridCell.Tab.0.right" timestamp="1606226651741">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1515" height="217" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1606226651741" />
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2" timestamp="1605882091097">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864/-1920.8.1920.1080@0.0.1536.864" timestamp="1605882091097" />
+    <state x="441" y="215" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1605722449509" />
+    <state x="551" y="269" key="Vcs.Push.Dialog.v2/0.0.1920.1080/1920.0.1920.1080@0.0.1920.1080" timestamp="1604961261254" />
     <state x="93" y="93" width="1350" height="678" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605170670057">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
