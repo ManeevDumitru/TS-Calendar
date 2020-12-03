@@ -2,7 +2,6 @@
 //1. Interface
 //2. Incapsulation
 //3. Back
-import {log} from "util";
 
 export class Calculator {
   // @ts-ignore
@@ -10,16 +9,19 @@ export class Calculator {
   // @ts-ignore
   protected historyInput: HTMLInputElement | null = document.getElementById('history-input');
   protected history: string[] = [];
-  protected edited: boolean = false;
+  protected hiddenOutput: string = "";
+
   protected currentValue: string = "0";
   protected operator: string = "";
   protected prevOperator: string = "";
-  protected hiddenOutput: string = "";
-  protected reset: boolean = false;
+
+  protected edited: boolean = false; // if math sign was pressed
+  protected reset: boolean = false; // if = was pressed
 
   constructor() {
     this.writeIn(this.currentValue);
   }
+
   protected writeIn(value: string): void {
     if (this.reset) {
       this.resetParams();
@@ -56,14 +58,12 @@ export class Calculator {
   private setOperation(value: string): void {
     const complexOperators: string[] = ["1/x", "x²", "√x", "%", "±"];
     this.operator = value;
-    console.log(`Prev is 1/x ${this.prevOperator === value}`)
     if(!this.edited) {
       if ((complexOperators.includes(value))) {
         this.setComplexOperation(value);
         return
       } else {
         if (complexOperators.includes(this.prevOperator)) {
-          console.log(`Prev op was complex ${this.prevOperator}`);
           this.currentValue = "";
           this.history.push(`${value} `);
         } else {
@@ -73,7 +73,7 @@ export class Calculator {
         this.edited = true;
       }
     } else {
-      this.history[this.history.length - 1] = `${this.currentValue} ${value} `.replace("x","");
+      this.history[this.history.length - 1] = `${this.currentValue} ${value} `.replace("x²","").replace("√x","").replace("1/x","");
     }
     this.historyInput!.value = this.history.join("").split("**").join("^");
     if (value === "=") {
@@ -94,7 +94,7 @@ export class Calculator {
   }
   protected setComplexOperation(value: string): void {
     if (this.currentValue === "0") {
-      console.log('Error');
+      this.historyInput!.value = this.history.join("").split("**").join("^")
       return
     }
     if (value !== this.prevOperator) {
@@ -134,10 +134,6 @@ export class Calculator {
         if (!(this.prevOperator === value)) {
           let temp = this.history.join("");
           temp = temp.substring(0, temp.length - 2);
-          /*
-            temp ... 100%
-            r ... 30%
-          */
           this.currentValue = ((eval(temp) * +this.currentValue)/ 100).toString();
           this.historyInput!.value += `${this.currentValue} `;
           this.outputInput!.value = this.currentValue;
@@ -171,6 +167,7 @@ export class Calculator {
   }
   protected clearCalculator(): void {
     this.history = [];
+    this.prevOperator = "";
     this.currentValue = "0";
     this.outputInput!.value = "0";
     this.historyInput!.value = "";
